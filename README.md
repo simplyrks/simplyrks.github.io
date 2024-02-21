@@ -1,4 +1,4 @@
 Personal Static Website
 
 
-ravikumarsingh.me
+ravikumarsingh.co.in
