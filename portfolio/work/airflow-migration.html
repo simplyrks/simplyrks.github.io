@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rebuilding 1,200+ PowerShell jobs as Airflow DAGs · Ravi Kumar Singh</title>
+  <meta name="description" content="Case study: a Python automation that rebuilt a bank's 1,200+ PowerShell data jobs as Airflow DAGs on Google Cloud, with processing 10x faster.">
+  <link rel="canonical" href="https://ravikumarsingh.co.in/portfolio/work/airflow-migration.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Rebuilding 1,200+ PowerShell jobs as Airflow DAGs">
+  <meta property="og:description" content="A banking data pipeline moved to Airflow on GCP, 10x faster. Case study by Ravi Kumar Singh.">
+  <meta property="og:url" content="https://ravikumarsingh.co.in/portfolio/work/airflow-migration.html">
+  <meta property="og:image" content="https://ravikumarsingh.co.in/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/portfolio/" aria-label="Ravi Kumar Singh, home"><span class="brand-mark">rk</span><span class="brand-name">Ravi Kumar Singh</span></a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="/portfolio/#work" class="active">Work</a>
+        <a href="/portfolio/#experience">Experience</a>
+        <a href="/portfolio/#about">About</a>
+        <a href="/portfolio/notes/">Notes</a>
+        <a href="/portfolio/#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <button class="kbd-btn" type="button" data-cmdk aria-label="Open command menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><kbd data-mod>⌘K</kbd></button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg class="theme-icon-light" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="theme-icon-dark" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="cs-hero">
+      <div class="hero-bg"></div>
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="crumbs reveal"><a href="/portfolio/#work">Work</a><span>/</span><span>Airflow migration</span></div>
+        <h1 class="reveal" style="--i:1">Rebuilding 1,200+ PowerShell jobs as Airflow DAGs</h1>
+        <p class="cs-lede reveal" style="--i:2">A banking client ran its data jobs as PowerShell scripts that moved raw data into structured tables. I designed the Python automation that rebuilt them as Airflow DAGs on Google Cloud, and processing ran 10x faster.</p>
+        <div class="cs-meta reveal" style="--i:3">
+          <div><div class="k">Role</div><div class="v">Senior software engineer, designed the automation</div></div>
+          <div><div class="k">Client</div><div class="v">A bank (unnamed)</div></div>
+          <div><div class="k">Timeline</div><div class="v">2023 – 2025</div></div>
+          <div><div class="k">Stack</div><div class="v">Python, Apache Airflow, Cloud SQL for MySQL, GCP</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container cs-layout">
+      <aside class="toc" aria-label="On this page">
+        <div class="label">On this page</div>
+        <ol>
+          <li><a href="#context">Context</a></li>
+          <li><a href="#scale">The scale</a></li>
+          <li><a href="#decisions">Decisions</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#under-the-hood">Under the hood</a></li>
+        </ol>
+        <div class="read-meter" aria-hidden="true"><i></i></div>
+      </aside>
+
+      <article class="article">
+        <section id="context" class="reveal">
+          <h2><span class="n">01</span>Context</h2>
+          <p>The client's data pipeline was a large set of PowerShell scripts. Each one took raw data and turned it into a transformed, structured format in MySQL on Google Cloud. It worked, but it was slow, and scripts on their own don't give you the scheduling, retries and run history an orchestrator does.</p>
+          <p>Porting 1,200 jobs by hand would have taken months and produced 1,200 slightly different DAGs. So the migration itself became the thing to automate.</p>
+        </section>
+
+        <section id="scale">
+          <h2 class="reveal"><span class="n">02</span>The scale</h2>
+          <figure class="figure reveal">
+            <div class="console-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>migration / dags</span><span class="live" style="margin-left:auto"><span class="pulse"></span>converted <b data-dag-count style="color:#fff; font-weight:500">0</b> / 1,200</span></div>
+            <div class="figure-body">
+              <div class="dag-grid" data-dag-grid aria-hidden="true"></div>
+              <div class="dag-legend"><span><span class="sw" style="background:#3b4656"></span>PowerShell script</span><span><span class="sw" style="background:var(--green)"></span>Airflow DAG</span><span>one square = one job</span></div>
+            </div>
+            <figcaption>Raw data → transformed → structured tables in Cloud SQL for MySQL.</figcaption>
+          </figure>
+        </section>
+
+        <section id="decisions" class="reveal">
+          <h2><span class="n">03</span>Decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3><span class="n">D1</span>Automate the conversion, don't hand-port</h3>
+              <p>The automation turned the existing job logic into Airflow DAGs that all followed one pattern: pick up raw data, transform it, load it into structured tables.</p>
+              <p class="tradeoff"><b>Trade-off</b>Jobs that didn't fit the pattern still needed a person, and they took the longest.</p>
+            </div>
+            <div class="decision">
+              <h3><span class="n">D2</span>One shape for every DAG</h3>
+              <p>Same structure, same naming, same retry behaviour. Anyone on the team could debug any job without learning its quirks first.</p>
+              <p class="tradeoff"><b>Trade-off</b>A few jobs were pushed into a shape that wasn't ideal for them.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="results" class="reveal">
+          <h2><span class="n">04</span>Results</h2>
+          <div class="results">
+            <div class="result"><div class="num"><span data-count="1200">0</span>+</div><div class="lbl">jobs running as Airflow DAGs</div></div>
+            <div class="result"><div class="num"><span data-count="10">0</span>x</div><div class="lbl">faster processing</div></div>
+            <div class="result"><div class="num" data-count="1">0</div><div class="lbl">pattern shared by every DAG</div></div>
+          </div>
+        </section>
+
+        <section id="under-the-hood" class="reveal">
+          <h2><span class="n">05</span>Under the hood</h2>
+          <p>What I designed or built myself:</p>
+          <div class="hood">
+            <div class="console-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>migration / what-i-built.log</span></div>
+            <ul>
+              <li><b>rewrite</b> PowerShell job logic rebuilt in Python as Airflow DAGs.</li>
+              <li><b>load</b> Raw data into transformed, structured tables in Cloud SQL for MySQL on GCP.</li>
+              <li><b>pattern</b> One DAG structure shared by all 1,200+ jobs.</li>
+              <li><b>speed</b> Processing 10x faster than the scripts it replaced.</li>
+            </ul>
+          </div>
+        </section>
+
+        <a class="next-cs reveal" href="/portfolio/work/saige.html">
+          <div><small>Back to the start</small><strong>sAIge: one helpdesk bot for web, Teams and the phone</strong></div>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <span>© 2026 Ravi Kumar Singh</span>
+      <span class="clock"><span class="pulse"></span>Mumbai <span data-clock>--:--</span> IST</span>
+      <nav class="foot-links" aria-label="Footer"><a href="/portfolio/">Home</a><a href="/portfolio/#contact">Contact</a><a href="/resume/Ravi_Kumar_Singh%20Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="https://www.linkedin.com/in/simplyrks/" target="_blank" rel="noopener">LinkedIn</a></nav>
+    </div>
+  </footer>
+
+  <dialog id="cmdk" class="cmdk-dialog" aria-label="Command menu">
+    <div class="cmdk">
+      <div class="cmdk-input"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--muted)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="Jump to a case study, copy my email, download the resume…" aria-label="Search commands" role="combobox" aria-expanded="true" aria-controls="cmdk-list" autocomplete="off"><kbd>esc</kbd></div>
+      <ul class="cmdk-list" id="cmdk-list" role="listbox"></ul>
+      <div class="cmdk-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span></div>
+    </div>
+  </dialog>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

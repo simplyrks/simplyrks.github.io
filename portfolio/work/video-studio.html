@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A multi-agent studio for explainer videos · Ravi Kumar Singh</title>
+  <meta name="description" content="Case study: a Claude Code pipeline where separate agents author, build and review explainer videos for seven channels, from one entry point.">
+  <link rel="canonical" href="https://ravikumarsingh.co.in/portfolio/work/video-studio.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A multi-agent studio for explainer videos">
+  <meta property="og:description" content="Seven channels, 10+ explainer projects, one entry point. Case study by Ravi Kumar Singh.">
+  <meta property="og:url" content="https://ravikumarsingh.co.in/portfolio/work/video-studio.html">
+  <meta property="og:image" content="https://ravikumarsingh.co.in/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/portfolio/" aria-label="Ravi Kumar Singh, home"><span class="brand-mark">rk</span><span class="brand-name">Ravi Kumar Singh</span></a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="/portfolio/#work" class="active">Work</a>
+        <a href="/portfolio/#experience">Experience</a>
+        <a href="/portfolio/#about">About</a>
+        <a href="/portfolio/notes/">Notes</a>
+        <a href="/portfolio/#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <button class="kbd-btn" type="button" data-cmdk aria-label="Open command menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><kbd data-mod>⌘K</kbd></button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg class="theme-icon-light" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="theme-icon-dark" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="cs-hero">
+      <div class="hero-bg"></div>
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="crumbs reveal"><a href="/portfolio/#work">Work</a><span>/</span><span>Video studio</span></div>
+        <h1 class="reveal" style="--i:1">A multi-agent studio for explainer videos</h1>
+        <p class="cs-lede reveal" style="--i:2">Varahe wanted a steady stream of explainer videos across seven channels. I built a pipeline where Claude Code agents write, build and review each video, all started from a single entry point.</p>
+        <div class="cs-meta reveal" style="--i:3">
+          <div><div class="k">Role</div><div class="v">Summer intern, built and ran the pipeline</div></div>
+          <div><div class="k">Company</div><div class="v">Varahe Analytics</div></div>
+          <div><div class="k">Timeline</div><div class="v">Summer 2026</div></div>
+          <div><div class="k">Stack</div><div class="v">Claude Code agents, Python, channel templates</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container cs-layout">
+      <aside class="toc" aria-label="On this page">
+        <div class="label">On this page</div>
+        <ol>
+          <li><a href="#what">What it does</a></li>
+          <li><a href="#pipeline">The pipeline</a></li>
+          <li><a href="#decisions">Decisions</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#under-the-hood">Under the hood</a></li>
+        </ol>
+        <div class="read-meter" aria-hidden="true"><i></i></div>
+      </aside>
+
+      <article class="article">
+        <section id="what" class="reveal">
+          <h2><span class="n">01</span>What it does</h2>
+          <p>One command takes a brief and carries it all the way to a rendered video. Three kinds of agent split the work:</p>
+          <ul>
+            <li><strong>Think tank</strong> drafts the script and structure.</li>
+            <li><strong>Specialists</strong> build the scenes using that channel's template.</li>
+            <li><strong>Reviewer</strong> checks the build against the brief and sends it back if it misses.</li>
+          </ul>
+          <p>It took five separate codebases before the structure settled into this shape. What made it scale was the channel template system: seven channels, each with its own look, all built from the same set of templates.</p>
+        </section>
+
+        <section id="pipeline">
+          <h2 class="reveal"><span class="n">02</span>The pipeline</h2>
+          <figure class="figure reveal">
+            <div class="console-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>studio / pipeline</span><span class="live" style="margin-left:auto"><span class="pulse"></span>rendering</span></div>
+            <div class="figure-body">
+              <svg viewBox="0 0 900 300" role="img" aria-label="Pipeline: brief, think tank authoring, specialist build using seven channel templates, reviewer QC that can send work back, render.">
+                <path d="M160 130 L800 130" stroke="#212935" stroke-width="2" fill="none"/>
+                <path class="flow" d="M160 130 L800 130" stroke="#5CC8FF" stroke-width="1.6" fill="none"/>
+                <path class="flow slow rev" d="M665 96 C665 50 485 50 485 96" stroke="#F5B942" stroke-width="1.6" fill="none"/>
+                <text class="svg-sub" x="575" y="46" text-anchor="middle" fill="#F5B942">send back</text>
+                <path class="flow slow" d="M485 204 L485 164" stroke="#A78BFA" stroke-width="1.6" fill="none"/>
+
+                <rect class="svg-box" x="30" y="100" width="130" height="60" rx="12"/>
+                <text class="svg-label" x="46" y="126">Brief</text><text class="svg-sub" x="46" y="144">one entry point</text>
+                <rect x="220" y="96" width="150" height="68" rx="12" fill="#121720" stroke="#7C9BFF"/>
+                <text class="svg-label" x="236" y="124">Think tank</text><text class="svg-sub" x="236" y="142">script, structure</text>
+                <rect x="410" y="96" width="150" height="68" rx="12" fill="#121720" stroke="#34D399"/>
+                <text class="svg-label" x="426" y="124">Specialists</text><text class="svg-sub" x="426" y="142">build scenes</text>
+                <rect x="600" y="96" width="130" height="68" rx="12" fill="#121720" stroke="#F5B942"/>
+                <text class="svg-label" x="616" y="124">Reviewer</text><text class="svg-sub" x="616" y="142">QC vs brief</text>
+                <rect class="svg-box" x="770" y="100" width="100" height="60" rx="12"/>
+                <text class="svg-label" x="786" y="126">Render</text><text class="svg-sub" x="786" y="144">video out</text>
+
+                <rect class="svg-box" x="400" y="204" width="170" height="60" rx="12"/>
+                <text class="svg-label" x="416" y="230">Channel templates</text>
+                <g transform="translate(416 244)">
+                  <rect width="14" height="10" rx="2" fill="#5CC8FF"/><rect x="20" width="14" height="10" rx="2" fill="#34D399"/><rect x="40" width="14" height="10" rx="2" fill="#7C9BFF"/><rect x="60" width="14" height="10" rx="2" fill="#F5B942"/><rect x="80" width="14" height="10" rx="2" fill="#F472B6"/><rect x="100" width="14" height="10" rx="2" fill="#A78BFA"/><rect x="120" width="14" height="10" rx="2" fill="#D6DDE7"/>
+                </g>
+
+                <circle r="6" fill="#34D399"><animateMotion dur="5s" repeatCount="indefinite" path="M160 130 L800 130"/></circle>
+                <circle r="6" fill="#5CC8FF"><animateMotion dur="5s" begin="1.7s" repeatCount="indefinite" path="M160 130 L800 130"/></circle>
+                <circle r="6" fill="#F472B6"><animateMotion dur="5s" begin="3.4s" repeatCount="indefinite" path="M160 130 L800 130"/></circle>
+              </svg>
+            </div>
+            <figcaption>Three videos in flight. The reviewer can return work to the specialists before render.</figcaption>
+          </figure>
+        </section>
+
+        <section id="decisions" class="reveal">
+          <h2><span class="n">03</span>Decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3><span class="n">D1</span>Separate agents for writing, building and reviewing</h3>
+              <p>An agent that checks its own work tends to pass it. Splitting the roles gave every video a second opinion before render.</p>
+              <p class="tradeoff"><b>Trade-off</b>More agent runs per video, so each one costs more time and compute.</p>
+            </div>
+            <div class="decision">
+              <h3><span class="n">D2</span>A template per channel</h3>
+              <p>Each of the seven channels has its own look, captured once in a template the specialists build from.</p>
+              <p class="tradeoff"><b>Trade-off</b>A new channel needs a template before it gets its first video.</p>
+            </div>
+            <div class="decision">
+              <h3><span class="n">D3</span>One way in</h3>
+              <p>Starting a video doesn't require knowing which agent does what. The entry point routes the brief.</p>
+              <p class="tradeoff"><b>Trade-off</b>The orchestration layer became the code that most needed to keep working.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="results" class="reveal">
+          <h2><span class="n">04</span>Results</h2>
+          <div class="results">
+            <div class="result"><div class="num" data-count="7">0</div><div class="lbl">channels with their own templates</div></div>
+            <div class="result"><div class="num"><span data-count="10">0</span>+</div><div class="lbl">explainer projects produced</div></div>
+            <div class="result"><div class="num" data-count="5">0</div><div class="lbl">codebases before it settled</div></div>
+            <div class="result"><div class="num" data-count="1">0</div><div class="lbl">entry point, brief to render</div></div>
+          </div>
+        </section>
+
+        <section id="under-the-hood" class="reveal">
+          <h2><span class="n">05</span>Under the hood</h2>
+          <p>What I designed or built myself:</p>
+          <div class="hood">
+            <div class="console-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>studio / what-i-built.log</span></div>
+            <ul>
+              <li><b>agents</b> Claude Code agents with separate authoring, build and review roles.</li>
+              <li><b>entry</b> One entry point that takes a brief and routes it through the pipeline.</li>
+              <li><b>templates</b> A reusable channel-template system covering 7 channels.</li>
+              <li><b>pipeline</b> Intake to render, rebuilt across 5 codebases before it settled.</li>
+            </ul>
+          </div>
+        </section>
+
+        <a class="next-cs reveal" href="/portfolio/work/airflow-migration.html">
+          <div><small>Next case study</small><strong>Rebuilding 1,200+ PowerShell jobs as Airflow DAGs</strong></div>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <span>© 2026 Ravi Kumar Singh</span>
+      <span class="clock"><span class="pulse"></span>Mumbai <span data-clock>--:--</span> IST</span>
+      <nav class="foot-links" aria-label="Footer"><a href="/portfolio/">Home</a><a href="/portfolio/#contact">Contact</a><a href="/resume/Ravi_Kumar_Singh%20Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="https://www.linkedin.com/in/simplyrks/" target="_blank" rel="noopener">LinkedIn</a></nav>
+    </div>
+  </footer>
+
+  <dialog id="cmdk" class="cmdk-dialog" aria-label="Command menu">
+    <div class="cmdk">
+      <div class="cmdk-input"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--muted)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="Jump to a case study, copy my email, download the resume…" aria-label="Search commands" role="combobox" aria-expanded="true" aria-controls="cmdk-list" autocomplete="off"><kbd>esc</kbd></div>
+      <ul class="cmdk-list" id="cmdk-list" role="listbox"></ul>
+      <div class="cmdk-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span></div>
+    </div>
+  </dialog>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

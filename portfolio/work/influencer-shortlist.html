@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From 1,463 influencers to a shortlist of 273 · Ravi Kumar Singh</title>
+  <meta name="description" content="Case study: cleaning a 28-state influencer list and building a rule engine that explained every pick, cutting the pool by 80% for campaign spend.">
+  <link rel="canonical" href="https://ravikumarsingh.co.in/portfolio/work/influencer-shortlist.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="From 1,463 influencers to a shortlist of 273">
+  <meta property="og:description" content="A rule engine with a written reason for every pick. Case study by Ravi Kumar Singh.">
+  <meta property="og:url" content="https://ravikumarsingh.co.in/portfolio/work/influencer-shortlist.html">
+  <meta property="og:image" content="https://ravikumarsingh.co.in/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/portfolio/" aria-label="Ravi Kumar Singh, home"><span class="brand-mark">rk</span><span class="brand-name">Ravi Kumar Singh</span></a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="/portfolio/#work" class="active">Work</a>
+        <a href="/portfolio/#experience">Experience</a>
+        <a href="/portfolio/#about">About</a>
+        <a href="/portfolio/notes/">Notes</a>
+        <a href="/portfolio/#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <button class="kbd-btn" type="button" data-cmdk aria-label="Open command menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><kbd data-mod>⌘K</kbd></button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg class="theme-icon-light" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="theme-icon-dark" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="cs-hero">
+      <div class="hero-bg"></div>
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="crumbs reveal"><a href="/portfolio/#work">Work</a><span>/</span><span>Influencer shortlist</span></div>
+        <h1 class="reveal" style="--i:1">From 1,463 influencers to a shortlist of 273</h1>
+        <p class="cs-lede reveal" style="--i:2">The campaign had a master sheet of 1,463 social media influencers across 28 states and a budget that couldn't cover all of them. I turned it into a ranked shortlist where every pick came with a written reason.</p>
+        <div class="cs-meta reveal" style="--i:3">
+          <div><div class="k">Role</div><div class="v">Summer intern, data and tooling</div></div>
+          <div><div class="k">Company</div><div class="v">Varahe Analytics</div></div>
+          <div><div class="k">Timeline</div><div class="v">Summer 2026</div></div>
+          <div><div class="k">Stack</div><div class="v">Python, Gemini Flash batch API, spreadsheets</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container cs-layout">
+      <aside class="toc" aria-label="On this page">
+        <div class="label">On this page</div>
+        <ol>
+          <li><a href="#problem">The problem</a></li>
+          <li><a href="#funnel">The funnel</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#decisions">Decisions</a></li>
+          <li><a href="#reels">Side quest: 50 reels</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#under-the-hood">Under the hood</a></li>
+          <li><a href="#looking-back">Looking back</a></li>
+        </ol>
+        <div class="read-meter" aria-hidden="true"><i></i></div>
+      </aside>
+
+      <article class="article">
+        <section id="problem" class="reveal">
+          <h2><span class="n">01</span>The problem</h2>
+          <p>The master sheet had duplicate entries, and follower counts had to be looked up by hand, one handle at a time. There was no written reason why one influencer ranked above another, so every shortlist conversation started from opinion.</p>
+          <p>The campaign needed something it could spend against with confidence: fewer names, better names, and a reason attached to each one.</p>
+        </section>
+
+        <section id="funnel">
+          <h2 class="reveal"><span class="n">02</span>The funnel</h2>
+          <figure class="figure reveal">
+            <div class="console-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>influencers / funnel</span><span class="live" style="margin-left:auto"><span class="pulse"></span>28 states · 27 fields</span></div>
+            <div class="figure-body">
+              <div class="funnel">
+                <div class="funnel-row"><span>raw master sheet</span><div class="funnel-bar"><i style="--w:100%;--i:0"></i><b>1,463</b></div></div>
+                <div class="funnel-row"><span>follower counts scraped</span><div class="funnel-bar"><i style="--w:96%;--i:1"></i><b>1,400+</b></div></div>
+                <div class="funnel-row"><span>scored with a rationale</span><div class="funnel-bar"><i style="--w:44%;--i:2"></i><b>645</b></div></div>
+                <div class="funnel-row"><span>priority shortlist</span><div class="funnel-bar"><i style="--w:18.7%;--i:3; background: linear-gradient(90deg, #34D399, #5CC8FF)"></i><b>273</b></div></div>
+              </div>
+            </div>
+            <figcaption>Bar widths to scale against the 1,463 starting records.</figcaption>
+          </figure>
+        </section>
+
+        <section id="how" class="reveal">
+          <h2><span class="n">03</span>How it works</h2>
+          <ul>
+            <li><strong>Clean and dedupe.</strong> A Python pipeline normalised the 1,463 records across 28 states and removed the duplicates.</li>
+            <li><strong>Automate the research.</strong> Follower counts for 1,400+ handles were scraped instead of looked up. That removed more than 90% of the manual research.</li>
+            <li><strong>Score with reasons.</strong> A rule-based classifier wrote a rationale file for each candidate it scored, 645 in all, saying which rules applied and why.</li>
+            <li><strong>Review in batches.</strong> The 645 went to subject experts in 15 batches.</li>
+            <li><strong>Filter to the shortlist.</strong> Contact, follower and geography criteria across 27 fields cut the list to 273, tiered and searchable by state.</li>
+          </ul>
+        </section>
+
+        <section id="decisions" class="reveal">
+          <h2><span class="n">04</span>Decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3><span class="n">D1</span>Rules instead of a black-box score</h3>
+              <p>A rule a reviewer can read beats a number they have to trust. Every rationale names the rules that fired, so disagreement is about a specific rule, not a gut feeling.</p>
+              <p class="tradeoff"><b>Trade-off</b>Rules miss nuance a person would catch. That's what the expert review was for.</p>
+            </div>
+            <div class="decision">
+              <h3><span class="n">D2</span>Fifteen small reviews, not one big one</h3>
+              <p>About 43 records per batch, small enough for an expert to finish in one sitting.</p>
+              <p class="tradeoff"><b>Trade-off</b>Slower end to end than one pass, but mistakes surfaced early instead of all at once.</p>
+            </div>
+            <div class="decision">
+              <h3><span class="n">D3</span>Never overwrite the master</h3>
+              <p>I kept the master sheet's versions across 10 backup states. Any cut could be traced back or undone, and nothing was lost.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="reels" class="reveal">
+          <h2><span class="n">05</span>Side quest: 50 reels</h2>
+          <p>Picking the right people is half the job. The other half is knowing what works for them. I built the tooling for a content audit of 50 Instagram reels: scrape them, transcribe them in bulk with the Gemini Flash batch API, and look for patterns in how top creators open their videos. The output was a list of hooks the campaign could brief creators with.</p>
+        </section>
+
+        <section id="results" class="reveal">
+          <h2><span class="n">06</span>Results</h2>
+          <div class="results">
+            <div class="result"><div class="num">−<span data-count="80">0</span>%</div><div class="lbl">smaller influencer pool</div></div>
+            <div class="result"><div class="num"><span data-count="90">0</span>%+</div><div class="lbl">less manual research</div></div>
+            <div class="result"><div class="num" data-count="645">0</div><div class="lbl">written rationales</div></div>
+            <div class="result"><div class="num" data-count="273">0</div><div class="lbl">on the priority list</div></div>
+            <div class="result"><div class="num" data-count="0">0</div><div class="lbl">records lost across 10 versions</div></div>
+          </div>
+        </section>
+
+        <section id="under-the-hood" class="reveal">
+          <h2><span class="n">07</span>Under the hood</h2>
+          <p>What I designed or built myself:</p>
+          <div class="hood">
+            <div class="console-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>influencers / what-i-built.log</span></div>
+            <ul>
+              <li><b>clean</b> A Python pipeline that normalises and dedupes 1,463 records across 28 states and 27 fields.</li>
+              <li><b>scrape</b> Automated follower counts for 1,400+ social handles.</li>
+              <li><b>classify</b> A rule-based classifier that writes one rationale JSON per candidate, 645 in all.</li>
+              <li><b>review</b> The 645 split into 15 batches for subject-expert validation.</li>
+              <li><b>audit</b> 50 reels scraped and transcribed with the Gemini Flash batch API.</li>
+              <li><b>safety</b> The master sheet versioned across 10 backup states.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="looking-back" class="reveal">
+          <h2><span class="n">08</span>Looking back</h2>
+          <p>I'd put the rules in front of the reviewers before writing any code. Agreeing on them first costs one meeting. Changing them after 645 rationales exist costs a rerun.</p>
+        </section>
+
+        <a class="next-cs reveal" href="/portfolio/work/video-studio.html">
+          <div><small>Next case study</small><strong>A multi-agent studio for explainer videos</strong></div>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <span>© 2026 Ravi Kumar Singh</span>
+      <span class="clock"><span class="pulse"></span>Mumbai <span data-clock>--:--</span> IST</span>
+      <nav class="foot-links" aria-label="Footer"><a href="/portfolio/">Home</a><a href="/portfolio/#contact">Contact</a><a href="/resume/Ravi_Kumar_Singh%20Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="https://www.linkedin.com/in/simplyrks/" target="_blank" rel="noopener">LinkedIn</a></nav>
+    </div>
+  </footer>
+
+  <dialog id="cmdk" class="cmdk-dialog" aria-label="Command menu">
+    <div class="cmdk">
+      <div class="cmdk-input"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--muted)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="Jump to a case study, copy my email, download the resume…" aria-label="Search commands" role="combobox" aria-expanded="true" aria-controls="cmdk-list" autocomplete="off"><kbd>esc</kbd></div>
+      <ul class="cmdk-list" id="cmdk-list" role="listbox"></ul>
+      <div class="cmdk-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span></div>
+    </div>
+  </dialog>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

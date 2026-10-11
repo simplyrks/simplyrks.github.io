@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /resume/s.pdf
+
+Sitemap: https://ravikumarsingh.co.in/sitemap.xml
