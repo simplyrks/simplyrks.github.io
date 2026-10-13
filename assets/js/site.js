@@ -336,6 +336,7 @@
       { g: "Case studies", t: "Multi-agent video studio", h: "case", go: "/portfolio/work/video-studio.html" },
       { g: "Case studies", t: "1,200+ PowerShell jobs to Airflow", h: "case", go: "/portfolio/work/airflow-migration.html" },
       { g: "Actions", t: "Download resume (PDF)", h: "pdf", go: "/resume/Ravi_Kumar_Singh%20Resume.pdf", blank: true },
+      { g: "Actions", t: "Download curriculum vitae (PDF)", h: "pdf", go: "/resume/Ravi_Kumar_Singh_CV.pdf", blank: true },
       { g: "Actions", t: "Copy email address", h: "copy", fn: function () { copy("rvkumarsingh14@gmail.com", "Email copied"); } },
       { g: "Actions", t: "Email me", h: "mail", go: "mailto:rvkumarsingh14@gmail.com" },
       { g: "Actions", t: "Call +91 94315 05948", h: "tel", go: "tel:+919431505948" },
