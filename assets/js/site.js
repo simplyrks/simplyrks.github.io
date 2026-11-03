@@ -150,7 +150,7 @@
         ["$ ", "status --looking-for", "cmd"],
         ["roles    ", "Technology and business consulting in IT", "acc"],
         ["from     ", "April 2027", "val"],
-        ["where    ", "Hyderabad · Pune · anywhere in India", "val"],
+        ["where    ", "anywhere in India", "val"],
         ["$ ", "tail -n 4 shipped.log", "cmd"],
         ["✓ ", "sAIge helpdesk bot · web, Teams, voice", "ok"],
         ["✓ ", "password-reset bot · Azure AD → Okta", "ok"],
