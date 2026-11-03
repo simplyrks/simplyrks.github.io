@@ -316,7 +316,7 @@
   /* ---------- command palette ---------- */
   var cmd = $("#cmdk");
   if (cmd) {
-    var home = "/portfolio/";
+    var home = "/";
     var onHome = body.hasAttribute("data-home");
     var sec = function (id) { return onHome ? "#" + id : home + "#" + id; };
     var items = [
@@ -327,14 +327,14 @@
       { g: "Pages", t: "About and how I work", h: "section", go: sec("about") },
       { g: "Pages", t: "Education", h: "section", go: sec("education") },
       { g: "Pages", t: "Certificates and awards", h: "section", go: sec("certificates") },
-      { g: "Pages", t: "Product notes", h: "page", go: "/portfolio/notes/" },
-      { g: "Pages", t: "Photography", h: "soon", go: "/portfolio/photography/" },
-      { g: "Case studies", t: "sAIge: one helpdesk bot on web, Teams and phone", h: "case", go: "/portfolio/work/saige.html" },
-      { g: "Case studies", t: "Password-reset bot: Azure AD + ServiceNow to Okta + Zendesk", h: "case", go: "/portfolio/work/password-reset.html" },
-      { g: "Case studies", t: "Campaign handbook for 16 teams", h: "case", go: "/portfolio/work/campaign-handbook.html" },
-      { g: "Case studies", t: "Influencer shortlist: 1,463 to 273", h: "case", go: "/portfolio/work/influencer-shortlist.html" },
-      { g: "Case studies", t: "Multi-agent video studio", h: "case", go: "/portfolio/work/video-studio.html" },
-      { g: "Case studies", t: "1,200+ PowerShell jobs to Airflow", h: "case", go: "/portfolio/work/airflow-migration.html" },
+      { g: "Pages", t: "Product notes", h: "page", go: "/notes/" },
+      { g: "Pages", t: "Photography", h: "soon", go: "/photography/" },
+      { g: "Case studies", t: "sAIge: one helpdesk bot on web, Teams and phone", h: "case", go: "/work/saige.html" },
+      { g: "Case studies", t: "Password-reset bot: Azure AD + ServiceNow to Okta + Zendesk", h: "case", go: "/work/password-reset.html" },
+      { g: "Case studies", t: "Campaign handbook for 16 teams", h: "case", go: "/work/campaign-handbook.html" },
+      { g: "Case studies", t: "Influencer shortlist: 1,463 to 273", h: "case", go: "/work/influencer-shortlist.html" },
+      { g: "Case studies", t: "Multi-agent video studio", h: "case", go: "/work/video-studio.html" },
+      { g: "Case studies", t: "1,200+ PowerShell jobs to Airflow", h: "case", go: "/work/airflow-migration.html" },
       { g: "Actions", t: "Download resume (PDF)", h: "pdf", go: "/resume/Ravi_Kumar_Singh%20Resume.pdf", blank: true },
       { g: "Actions", t: "Download curriculum vitae (PDF)", h: "pdf", go: "/resume/Ravi_Kumar_Singh_CV.pdf", blank: true },
       { g: "Actions", t: "Copy email address", h: "copy", fn: function () { copy("rvkumarsingh14@gmail.com", "Email copied"); } },

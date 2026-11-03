@@ -9,6 +9,7 @@
   <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/site.css">
+  <script>(function(){var p=location.pathname;if(/^\/portfolio(\/|$)/.test(p)){location.replace(p.replace(/^\/portfolio\/?/,"/")+location.search+location.hash)}})();</script>
 </head>
 <body data-root="/">
   <main id="main">
@@ -24,10 +25,9 @@
         </div>
       </div>
       <h1 class="reveal" style="--i:1">This page isn't on the roadmap.</h1>
-      <p class="section-lede reveal" style="--i:2">The link might be from an older version of this site. Here are the two places you were probably looking for.</p>
+      <p class="section-lede reveal" style="--i:2">The link might be from an older version of this site. Everything lives on the home page now.</p>
       <div class="btn-row reveal" style="--i:3">
-        <a class="btn btn-primary" href="/portfolio/">Ravi's career portfolio <span class="arrow" aria-hidden="true">→</span></a>
-        <a class="btn" href="/">Take it Online: get your business online</a>
+        <a class="btn btn-primary" href="/">Go to the home page <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>
