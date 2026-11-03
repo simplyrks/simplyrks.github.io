@@ -342,6 +342,7 @@
       { g: "Actions", t: "Call +91 94315 05948", h: "tel", go: "tel:+919431505948" },
       { g: "Actions", t: "Open LinkedIn", h: "↗", go: "https://www.linkedin.com/in/simplyrks/", blank: true },
       { g: "Actions", t: "Open GitHub", h: "↗", go: "https://github.com/simplyrks", blank: true },
+      { g: "Actions", t: "Play Cabo (a card game I built)", h: "↗", go: "https://cabo-rks.netlify.app/", blank: true },
       { g: "Actions", t: "Toggle dark mode", h: "theme", fn: function () { toggleTheme(); } },
       { g: "Actions", t: "Print this page", h: "print", fn: function () { window.print(); } }
     ];
