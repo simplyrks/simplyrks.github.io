@@ -1,6 +1,6 @@
 # ravikumarsingh.co.in
 
-Ravi Kumar Singh's career portfolio (technology and business consulting roles).
+Ravi Kumar Singh's career portfolio (technology and business consulting roles in IT).
 Plain HTML, CSS and JavaScript: no framework, no build step, no server.
 
 ## Structure
