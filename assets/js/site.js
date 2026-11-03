@@ -148,7 +148,7 @@
         ["$ ", "whoami", "cmd"],
         ["", "Ravi Kumar Singh · MBA, NMIMS Mumbai (2025–27)", "val"],
         ["$ ", "status --looking-for", "cmd"],
-        ["roles    ", "Technology Consultant · Forward Deployed Engineer", "acc"],
+        ["roles    ", "Technology Consultant · Business Consultant", "acc"],
         ["from     ", "April 2027", "val"],
         ["where    ", "Hyderabad · Pune · anywhere in India", "val"],
         ["$ ", "tail -n 4 shipped.log", "cmd"],
