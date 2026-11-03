@@ -1,3 +1,4 @@
-# Old /portfolio/ links (the career site moved to the root on 2026-11-03)
-/portfolio      /          301
+# The career site moved from /portfolio/ to the root on 2026-11-03.
+# /portfolio/ itself is a copy of the home page (portfolio/index.html), so it loads as-is;
+# these 301s only catch the old deeper links (e.g. /portfolio/work/saige.html).
 /portfolio/*    /:splat    301

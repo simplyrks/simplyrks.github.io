@@ -9,7 +9,7 @@
   <script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="dark"||q==="light")?q:localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/site.css">
-  <script>(function(){var p=location.pathname;if(/^\/portfolio(\/|$)/.test(p)){location.replace(p.replace(/^\/portfolio\/?/,"/")+location.search+location.hash)}})();</script>
+  <script>(function(){var p=location.pathname;if(/^\/portfolio\/./.test(p)){location.replace(p.replace(/^\/portfolio\/?/,"/")+location.search+location.hash)}})();</script>
 </head>
 <body data-root="/">
   <main id="main">

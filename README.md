@@ -7,6 +7,7 @@ Plain HTML, CSS and JavaScript: no framework, no build step, no server.
 
 ```
 index.html                    portfolio home
+portfolio/index.html          exact copy of index.html, so /portfolio/ shows the same page
 work/*.html                   one page per case study
 notes/                        product notes (coming soon)
 photography/                  gallery (coming soon)
@@ -18,6 +19,8 @@ _redirects                    Netlify 301s from old /portfolio/... links
 resume/  images/              PDFs and images (URLs kept stable)
 robots.txt  sitemap.xml
 ```
+
+After editing `index.html`, copy it over: `cp index.html portfolio/index.html`.
 
 All internal links are absolute (`/work/...`, `/assets/...`). Open the site through a local server,
 not by double-clicking files.
